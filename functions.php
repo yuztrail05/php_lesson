@@ -17,17 +17,24 @@ function detail($id) {
   return getSelectData($id);
 }
 
-function checkRefer() {
+function checkReferer() {
   $httpArr = parse_url($_SERVER['HTTP_REFERER']);
   return $res = transition($httpArr['path']);
 }
 
 function transition($path) {
   $data = $_POST;
-  if($path === '/new.php') {
+  if($path === '/index.php' && $data['type'] === 'delete'){
+    deleteData($data['id']);
+    return 'index';
+  }elseif($path === '/new.php'){
     create($data);
-  }else if($path === '/edit.php') {
+  }elseif($path === '/edit.php'){
     update($data);
   }
+}
+
+function deleteData($id) {
+  deleteDb($id);
 }
 ?>
