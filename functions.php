@@ -1,16 +1,44 @@
 <?php
 require('connection.php');
+session_start();
 
+function h($s) {
+  return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
+}
+
+// sessionに暗号化したtokenを入れる
+function setToken() {
+  $token = sha1(uniqid(mt_rand(),true));
+  $_SESSION['token'] = $token;
+}
+
+// sessionのチェックを行いcsrf対策を行う
+function checkToken($data) {
+  if (empty($_SESSION['token']) || ($_SESSION['token'] != $data)){
+    $_SESSION['err'] = '不正な操作です';
+    header('location: '.$_SERVER['HTTP_REFERER'].'');
+    exit();
+  }
+  return true;
+}
+
+function unsetSession() {
+  if(!empty($_SESSION['err'])) $_SESSION['err'] = '';
+}
 function create($data) {
-  insertDb($data['todo']);  
+  if(checkToken($data['token'])){ //追記
+    insertDb($data['todo']);
+  }// 追記
+}
+
+function update($data) {
+  if(checkToken($data['token'])){ // 追記
+    updateDb($data['id'], $data['todo']);
+  }// 追記
 }
 
 function index() {
   return $todos = selectAll();
-}
-
-function update($data) {
-  updateDb($data['id'], $data['todo']);
 }
 
 function detail($id) {
