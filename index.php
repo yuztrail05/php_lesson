@@ -24,14 +24,14 @@
       </tr>
       <?php foreach(index() as $todo): ?>
         <tr>
-          <td><?php echo h($todo['id']) ?></td> <!-- 編集 -->
-          <td><?php echo h($todo['todo']) ?></td><!-- 編集 -->
+          <td><?php echo h($todo['id']) ?></td>
+          <td><?php echo h($todo['todo']) ?></td>
           <td>
-            <a href="edit.php?id=<?php echo h($todo['id']) ?>">更新</a><!-- 編集 -->
+            <a href="edit.php?id=<?php echo h($todo['id']) ?>">更新</a>
           </td>
           <td>
             <form action="store.php" method="POST">
-              <input type="hidden" name="id" value="<?php echo h($todo['id']) ?>"><!-- 編集 -->
+              <input type="hidden" name="id" value="<?php echo h($todo['id']) ?>">
               <input type="hidden" name="type" value="delete">
             <button type="submit">削除</botton>
           </form></td>

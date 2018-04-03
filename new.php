@@ -1,6 +1,6 @@
 <?php
 require_once('functions.php');
-setToken(); //  追記
+setToken();
 ?>
 
 <!DOCTYPE html>

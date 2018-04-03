@@ -1,6 +1,6 @@
 <?php
 require_once('functions.php');
-setToken(); //  追記
+setToken(); 
 $data = detail($_GET['id']);
 ?>
 <!DOCTYPE html>
