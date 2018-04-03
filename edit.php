@@ -11,9 +11,9 @@ $data = detail($_GET['id']);
 </head>
 <body>
     <form action="store.php" method="post">
-        <input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>"><!-- 追記 -->
-        <input type="hidden" name="id" value="<?php echo h($_GET['id']); ?>"><!-- 編集 -->
-        <input type="text" name="todo" value="<?php echo h($data); ?>"><!-- 編集 -->
+        <input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>">
+        <input type="hidden" name="id" value="<?php echo h($_GET['id']); ?>">
+        <input type="text" name="todo" value="<?php echo h($data); ?>">
         <input type="submit" value="更新">
     <div>
         <a href="index.php">一覧へ戻る</a>
