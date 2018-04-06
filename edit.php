@@ -10,6 +10,9 @@ $data = detail($_GET['id']);
     <title>編集</title>
 </head>
 <body>
+    <?php if(isset($_SESSION['err'])): ?>
+        <p><?php echo $_SESSION['err'] ?></p>
+    <?php endif; ?>
     <form action="store.php" method="post">
         <input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>">
         <input type="hidden" name="id" value="<?php echo h($_GET['id']); ?>">
